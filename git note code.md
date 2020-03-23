@@ -34,7 +34,7 @@
 
 5. git commit -m "提交注释信息" : 把暂存区的文件放到历史区(打个版本)
 
-6. git push origin 分支 [-u] : 把本地历史区推送到github仓库里面
+6. git push origin 分支 [-u] : 把本地工作区推送到github仓库里面
 
 ## 把本地文件夹推送到github仓库上面
 
@@ -58,7 +58,7 @@
 
 5. git reset [--hard|--mixed|--soft] [HEAD^|HEAD~n|版本号]
 
->以下是参数解释
+> 以下是参数解释
 
 6. 参数:--hard 强制移动版本库中的HEAD指针,并且改变暂存区和工作区内容(严格的版本改变)
 
@@ -74,10 +74,32 @@
 
 # 当远程仓库改变时,push推送失败怎么解决
 
-1. git pull origin master : 先获取最新的仓库版本
+1. git pull origin master : 先获取远程仓库的最新的仓库版本
 
 2. :q退出vim编辑
 
 3. git push origin master : 向远程仓库推送即可
 
-4. 如果上一步推送失败可能是合并的问题,git status 检查检查是不是有文件还没有添加的版本库中,添加了在重服第3步
+4. 如果上一步推送失败可能是合并的问题,git status 检查检查是不是有文件还没有添加的版本库中,添加了在重复第3步
+
+# 分支管理
+
+* git branch 查看当前所有分支
+
+* git branch 分支名称 创建分支
+
+* git checkout 分支名称 切换到分支
+
+* 注意:在不同的分支上的内容只有提交到了历史区(版本库),才会产生区别否则都在工作区则没有区别.
+
+* 可在远程手动创建分支,在本地推送到对应分支
+	* git push origin 分支名称 推送到远程特定分支上
+
+* 远程合并分支,会在仓库主页pull request 请求,手动处理并确认合并即可.
+
+* 本地合并分支:(以下把second分支合并到master分支为例)
+	* 第一步:切换到要将被合并的分支上,即切换到master分支上
+	* git checkout 被合并分支名称 (git checkout master)
+	* 第二步:执行合并命令
+	* git merge 分支名称 (git merge second)
+* 注意:如果合并分支时只是新增了文件,直接merge即可;如果两分支对同一文件内容做了修改,合并分支时则需要手动解决冲突
